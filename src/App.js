@@ -8,7 +8,8 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  HashRouter
 } from "react-router-dom";
 
 import Button from 'react-bootstrap/Button';
@@ -62,7 +63,7 @@ class App extends Component {
     return (
       <div className="App">
 
-        <Router>
+        <HashRouter>
           <Switch>
             <Route path="/" exact>
               <div className="landing-page">
@@ -161,7 +162,7 @@ class App extends Component {
 
 
 
-        </Router>
+        </HashRouter>
 
       </div>
     );
