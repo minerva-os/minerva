@@ -140,7 +140,7 @@ function Owner(props) {
     .then(function (response) {
       // handle success
       console.log(response);
-      setMessage(`Your Contract Address is : ${contract_address} & Your sponsor URL is http://localhost:3000/sponsor/${repo_id}`)
+      setMessage(`Your Contract Address is : ${contract_address} & Your sponsor URL is https://minerva.on.fleek.co/sponsor/${repo_id}`)
       setConAdd(contract_address);
     })
     .catch(function (error) {
