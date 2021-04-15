@@ -140,7 +140,7 @@ function App(props) {
 
         const contract = new web3.eth.Contract(compiledContract.abi, contractAddress);
 
-          const transaction = await contract.methods.sendContributorTokens(userid, userAddress).send({ from : "0xbbbaaD77908e7143B6b4D5922fd201cd08568f63"})
+          const transaction = await contract.methods.sendContributorTokens(userid, userAddress).send({ from : accounts[0]})
           .once('receipt', (receipt) => {
             // console.log(receipt);
           })
@@ -158,9 +158,19 @@ function App(props) {
                 <div> 
                     <h2>  Hi, {props.state.userData.login}  </h2>
 
+                    <ul> 
                     <div>
-                    <Button variant="primary" onClick={signInWithMetamask}> Connect </Button>
+                        <li> 
+                            <h2> Step 1 </h2>
+                             <p> Connect to <a target="_blank" href="https://metamask.io/download.html"> Metamask </a> </p>
+                            <Button variant="primary" onClick={signInWithMetamask}> Connect </Button>
+                        </li>
+
+
                     <Form>
+                        <li> 
+                            <h2> Step 2 </h2>
+                            <p> Add the repo URL and check if the project is on Minerva</p>
                     <Form.Group >
                         <Form.Label> Repo URL : </Form.Label>
 
@@ -168,7 +178,10 @@ function App(props) {
                         <Button onClick={() => getData(url)}> Check </Button> 
 
                       </Form.Group>
-
+                      </li>
+                      <li> 
+                          <h2> Step 3 </h2>
+                          <p> Add your Github username and wallet address to transfer tokens to your account. You will have to wait 2-3 mins after your PR gets merged.</p> 
                       <Form.Group>
                         <Form.Label> Username : </Form.Label>
 
@@ -182,10 +195,26 @@ function App(props) {
                         <Form.Control required type="text" placeholder="0xbgsgaaD77908e5353B6b4D5922fd201cs985663" onChange={(data) => setUserAddress(data.target.value)}/>
 
                       </Form.Group>
-
+                      
                       <Button variant="primary" onClick={transferTokens}> Transfer tokens </Button>
+                      </li>
                       </Form>
+
+                      <li> 
+                          <h2> Step 4 </h2>
+                          <p> Wait for some time. Once transaction is done, follow these steps to make the tokens visible on Metamask wallet</p>
+                            <p> Copy this address : {contractAddress}</p>
+                            <p> Open Metamask, Go to "Assets"</p>
+                            <p> Scroll down & click "Add Token"</p>
+                            <p> Go to "Custom Tokens" and paste the contract address you copied</p>
+                            <p> Click "Next" and then "Add Tokens"</p>
+                            <p>  🎉 Hooray! You should now see your tokens in your wallet! </p>
+
+
+
+                      </li>
                     </div> 
+                    </ul>
                 </div> : 
                 <Redirect to="/home" />
             }

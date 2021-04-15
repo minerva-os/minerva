@@ -195,7 +195,7 @@ function Owner(props) {
 
       const contract = new web3.eth.Contract(compiledContract.abi, conAdd);
 
-        const transaction = await contract.methods.setPrCheck().send({ from : "0xbbbaaD77908e7143B6b4D5922fd201cd08568f63"})
+        const transaction = await contract.methods.setPrCheck().send({ from : accounts[0]})
         .once('receipt', (receipt) => {
           // console.log(receipt);
         })
@@ -217,7 +217,7 @@ function Owner(props) {
 
   return (
     <div>
-      <NavBar active="owner" />
+      <NavBar active="owner" metamaskStatus={metamaskConnected}/>
       <div className="container padding">
         {
           props.state.owner ?
@@ -228,11 +228,13 @@ function Owner(props) {
               //     */}
               //     {/* <div className="col-10"> */}
                   <div>
+                    <h5 style={{marginBottom : "20px"}}> Please note we are on Kovan testnet </h5>
                      <ul>
        
                   <li>
+                    
                       <h2> Step 1 </h2>
-                      <p> Connect to Metamask </p>
+                      <p> Connect to <a target="_blank" href="https://metamask.io/download.html"> Metamask </a> </p>
                       <Button variant="warning" onClick={signInWithMetamask}>Connect</Button>{' '}
                       
 
@@ -306,7 +308,7 @@ function Owner(props) {
 
                     <li> 
                       <h2> Step 5 </h2>
-                      <p> Share the link with your supporters! And, tell your contributors about their rewards for #OSS contributions</p>
+                      <p> Share the link below with your supporters! And, tell your contributors about their rewards for #OSS contributions. <a href="https://github.com/shreykeny/minerva-demo" target="_blank"> Example</a> </p>
 
                       <p> {message} </p>
                     </li>
