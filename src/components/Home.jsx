@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import NavBar from './NavBar'
+import Button from 'react-bootstrap/Button';
+
 
 function App(props) {
 
@@ -12,12 +14,14 @@ function App(props) {
                     props.state.loggedIn ?
 
                         <div>
-                            Logged In!
+                           <div className="home-content"> <h5> Logged In! </h5> </div> 
             </div> :
 
-                        <div>
+                        <div className="home-content">
+                            <h2> Note : </h2>
+                            <h5> Please note that we are only available on Kovan testnet for the time being </h5>
                             <form method="GET" action="https://github-auth.recurshawn.repl.co/login?option=owner">
-                                <button type="submit" > Sign in with GitHub </button>
+                                <Button type="submit" className="orange-btn"> Sign in with GitHub </Button>
                             </form>
                         </div>
                 }

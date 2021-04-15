@@ -22,6 +22,7 @@ function App (props) {
     const [contractAddress, setContractAddress] = useState();
     const [statusMessage, setStatusMessage] = useState();
     const [withdrawMessage, setWithdrawMessage] = useState();
+    
 
 
 
@@ -63,7 +64,9 @@ function App (props) {
 
         const contract = new web3.eth.Contract(compiledContract.abi, contractAddress);
 
-          const transaction = await contract.methods.approve(accounts[0],token).send({ from : "0xbbbaaD77908e7143B6b4D5922fd201cd08568f63"})
+        const val = token * 1000000000000000000;
+
+          const transaction = await contract.methods.approve(accounts[0],`${val}`).send({ from : accounts[0]})
           .once('receipt', (receipt) => {
             // console.log(receipt);
           })
@@ -76,9 +79,11 @@ function App (props) {
 
         const accounts = await web3.eth.getAccounts();
 
+        const val = token * 1000000000000000000;
+
         const contract = new web3.eth.Contract(compiledContract.abi, contractAddress);
 
-          const transaction = await contract.methods.sponsorWithdrawsFunds(token).send({ from : "0xbbbaaD77908e7143B6b4D5922fd201cd08568f63"})
+          const transaction = await contract.methods.sponsorWithdrawsFunds(token).send({ from : accounts[0]})
           .once('receipt', (receipt) => {
             // console.log(receipt);
           })
@@ -94,43 +99,44 @@ function App (props) {
 
     return(
         <div> 
-        <NavBar active="liquid" />
-        <div className="container"> 
 
+        <NavBar active="liquid" metamaskStatus={metamaskConnected}/>
+        <div className="container liquid"> 
+            <ul>
 
-            <div> 
+            <li> 
             <h2> Step 1</h2> 
-            <p> Connect to Metamask </p>
+            <p> Connect to Metamask & check how many tokens you have under "Assets" </p>
             <Button variant="primary" onClick={signInWithMetamask}> Connect </Button>
-            </div>
+            </li>
 
 
 
-            <div> 
+            <li> 
                 <h2> Step 2 </h2>
                 <p> Approve the withdrawal of funds </p> 
 
                 <label> Amount of tokens to exchange</label>
-                <input type="text" onChange={(data) => setToken(data.target.value)}/>
+                <input type="number" onChange={(data) => setToken(data.target.value)} placeholder="10 tokens"/>
 
                 <Button variant="primary" onClick={approve}> Approve</Button>
                 <div> {statusMessage} </div> 
-            </div>
+            </li>
 
-            <div> 
+            <li> 
                 <h2> Step 3 </h2>
                 <p> Withdraw </p> 
 
                 <label> Amount of tokens to exchange</label>
-                <input type="text" onChange={(data) => setToken(data.target.value)}/>
+                <input type="number" onChange={(data) => setToken(data.target.value )} placeholder="10 tokens"/>
 
                 <Button variant="primary" onClick={withdrawFunds}> Withdraw</Button>
                 <p> {withdrawMessage}</p>
-            </div>
+            </li>
 
              
 
-            
+            </ul>
         </div>
         </div>
     )

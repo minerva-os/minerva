@@ -64,7 +64,7 @@ function App(props) {
 
         const contract = new web3.eth.Contract(compiledContract.abi, contractAddress);
 
-          const transaction = await contract.methods.sponsorFundsRepo().send({ from : "0xbbbaaD77908e7143B6b4D5922fd201cd08568f63", value: (sponsorAmount * (Math.pow(10, 18)))})
+          const transaction = await contract.methods.sponsorFundsRepo().send({ from : accounts[0], value: (sponsorAmount * (Math.pow(10, 18)))})
           .once('receipt', (receipt) => {
             // console.log(receipt);
           })

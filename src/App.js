@@ -27,6 +27,8 @@ import Explanation from './minerva-explanation.gif';
 import Commits from './gitcommits.png';
 import Diagram from './diagram.png'
 import Liquid from './components/Liquid';
+import Nav from './components/NavBar';
+
 
 
 class App extends Component {
@@ -157,6 +159,19 @@ class App extends Component {
                     <Route path="/liquid/:repo_id" render={(props) => (
               <Liquid {...props} state={this.state} />
             )} />
+
+            <Route path="/liquid">
+              <Nav active="/liquid"/>
+              <p className="liquidity-message"> 
+              Please add the repo ID of the repository to which you are entitled some funds.
+
+              <br /> 
+              <div> 
+              For example : <a href="https://minerva-os.netlify.app/liquid/357540252"> https://minerva-os.netlify.app/liquid/357540252</a>
+              </div>
+
+              </p>
+            </Route>
             </Switch>
 
 
