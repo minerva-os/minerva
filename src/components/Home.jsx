@@ -19,7 +19,9 @@ function App(props) {
 
                         <div className="home-content">
                             <h2> Note : </h2>
-                            <h5> Please note that we are only available on Kovan testnet for the time being </h5>
+                            <h5> Minerva's Github Oracle is currently down to save on server costs. In case you'd like a demo, let us <a target="_blank" href="https://twitter.com/ShreyKeny/status/1382710408553713669?s=20"> know </a> . </h5>
+                            <h5> Minerva is only on Kovan testnet.</h5>
+
                             <form method="GET" action="https://github-auth.recurshawn.repl.co/login?option=owner">
                                 <Button type="submit" className="orange-btn"> Sign in with GitHub </Button>
                             </form>
